@@ -3,10 +3,8 @@ demo.py should be run from the directory above "pycha"
 
 you'll want to:
 
-> pip install cffi cairocffi
-
-
 > apt-get install libffi-dev libcairo-dev
+> pip install cffi cairocffi
 
 ----
 
