@@ -19,7 +19,7 @@ import copy
 import inspect
 import math
 
-import cairo
+import cairocffi as cairo
 from six.moves import reduce
 
 from pycha.color import ColorScheme, hex2rgb, DEFAULT_COLOR
@@ -312,11 +312,12 @@ class Chart(object):
         if self.options.background.chartColor:
             cx.set_source_rgb(*hex2rgb(self.options.background.chartColor))
             surface_width, surface_height = self.getSurfaceSize()
-            cx.rectangle(self.options.padding.left, self.options.padding.top,
-                         surface_width - (self.options.padding.left
-                                          + self.options.padding.right),
-                         surface_height - (self.options.padding.top
-                                           + self.options.padding.bottom))
+            #cx.rectangle(self.options.padding.left, self.options.padding.top,
+            #             surface_width - (self.options.padding.left
+            #                              + self.options.padding.right),
+            #             surface_height - (self.options.padding.top
+            #                               + self.options.padding.bottom))
+            cx.rectangle(0, 0, surface_width, surface_height)
             cx.fill()
 
         if self.options.background.lineColor:
@@ -766,8 +767,8 @@ class Layout(object):
                 max_width, max_height = max(widths), max(heights)
                 if axis.rotate:
                     radians = math.radians(axis.rotate)
-                    sin = abs(math.sin(radians))
-                    cos = abs(math.cos(radians))
+                    sin = math.sin(radians)
+                    cos = math.cos(radians)
                     max_width, max_height = (
                         max_width * cos + max_height * sin,
                         max_width * sin + max_height * cos,

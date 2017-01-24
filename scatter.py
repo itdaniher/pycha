@@ -32,7 +32,7 @@ class ScatterplotChart(LineChart):
             cx.fill()
 
         for key in self._getDatasetsKeys():
-            cx.set_source_rgb(*self.colorScheme[key])
+            cx.set_source_rgba(*self.colorScheme[key])
             for point in self.points:
                 if point.name == key:
                     drawSymbol(point, self.options.stroke.width)

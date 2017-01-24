@@ -165,6 +165,18 @@ class GradientColorScheme(ColorScheme):
             self[key] = lighten(r, g, b, light * i)
 
 
+class IteroColorScheme(ColorScheme):
+    def __init__(self, keys, initialColor=DEFAULT_COLOR):
+        super(IteroColorScheme, self).__init__(keys)
+        if initialColor in basicColors:
+            initialColor = basicColors[initialColor]
+
+        r, g, b = hex2rgb(initialColor)
+        light = 1.0 / (len(keys)*2.0)
+        for i, key in enumerate(keys):
+            self[key] = (r, g, b, light * i)
+
+
 class FixedColorScheme(ColorScheme):
     """In this color scheme fixed colors are used.
 
