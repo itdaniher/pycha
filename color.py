@@ -41,7 +41,11 @@ def hex2rgb(hexstring, digits=2):
     r = int(hexstring[1:digits+1], 16)
     g = int(hexstring[digits+1:digits*2+1], 16)
     b = int(hexstring[digits*2+1:digits*3+1], 16)
-    return r / top, g / top, b / top
+    if len(hexstring) > len('#000000'):
+        a = int(hexstring[digits*3+1:digits*4+1], 16)
+        return r / top, g / top, b / top, a / top
+    else:
+        return r / top, g / top, b / top
 
 
 def rgb2hsv(r, g, b):

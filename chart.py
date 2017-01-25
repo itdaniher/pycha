@@ -591,7 +591,11 @@ class Chart(object):
 
         def drawKey(key, x, y, text_height):
             cx.rectangle(x, y, bullet, bullet)
-            cx.set_source_rgb(*self.colorScheme[key])
+            try:
+                cx.set_source_rgb(*self.colorScheme[key])
+            #TODO: cleaner handling of alpha channel
+            except TypeError:
+                cx.set_source_rgba(*self.colorScheme[key])
             cx.fill_preserve()
             cx.set_source_rgb(0, 0, 0)
             cx.stroke()
