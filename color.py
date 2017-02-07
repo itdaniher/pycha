@@ -190,10 +190,10 @@ class FixedColorScheme(ColorScheme):
     def __init__(self, keys, colors=[]):
         super(FixedColorScheme, self).__init__(keys)
 
-        if len(keys) != len(colors):
-            raise ValueError("You must provide as many colors as datasets "
+        if len(keys) > len(colors):
+            raise ValueError("You must provide at least as many colors as datasets "
                              "for the fixed color scheme")
-
+        keys = sorted(keys)
         for i, key in enumerate(keys):
             self[key] = hex2rgb(colors[i])
 
