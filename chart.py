@@ -555,7 +555,7 @@ class Chart(object):
         bullet = 15
         width = 0
         height = padding
-        keys = self._getDatasetsKeys()
+        keys = sorted(self._getDatasetsKeys())
         cx.select_font_face(self.options.legend.legendFont,
                             cairo.FONT_SLANT_NORMAL,
                             cairo.FONT_WEIGHT_NORMAL)
