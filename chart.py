@@ -68,9 +68,12 @@ class Chart(object):
         """Adds an object containing chart data to the storage hash"""
         self.datasets += dataset
 
-    def _getDatasetsKeys(self):
+    def _getDatasetsKeys(self, sorted = True):
         """Return the name of each data set"""
-        return [d[0] for d in self.datasets]
+        if sorted == True:
+            return [d[0] for d in sorted(self.datasets)]
+        else:
+            return [d[0] for d in self.datasets]
 
     def _getDatasetsValues(self):
         """Return the data (value) of each data set"""
